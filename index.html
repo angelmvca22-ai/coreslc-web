@@ -178,7 +178,7 @@
             document.getElementById('footer-privacy').innerText = translations[lang].privacy;
             document.getElementById('footer-terms').innerText = translations[lang].terms;
 
-            // Corrección: Cambiar la clase activa comparando correctamente con el argumento 'lang'
+            // Corrección: Cambiar  la clase activa comparando correctamente con el argumento 'lang'
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if(btn.getAttribute('onclick').includes(`'${lang}'`)) {
