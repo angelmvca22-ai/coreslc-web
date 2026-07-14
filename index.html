@@ -166,25 +166,34 @@
         };
 
         function setLanguage(lang) {
-            // Actualizar contenidos de texto
-            document.getElementById('nav-subtitle').innerText = translations[lang].subtitle;
-            document.getElementById('section-title').innerText = translations[lang].secTitle;
-            document.getElementById('section-desc').innerText = translations[lang].secDesc;
-            document.getElementById('card-badge').innerText = translations[lang].badge;
-            document.getElementById('card-title').innerText = translations[lang].cardTitle;
-            document.getElementById('card-p1').innerText = translations[lang].cardP1;
-            document.getElementById('card-p2').innerText = translations[lang].cardP2;
-            document.getElementById('card-btn').innerText = translations[lang].btn;
-            document.getElementById('footer-privacy').innerText = translations[lang].privacy;
-            document.getElementById('footer-terms').innerText = translations[lang].terms;
+            try {
+                // Verificar que cada elemento exista antes de asignarle texto
+                if(document.getElementById('nav-subtitle')) document.getElementById('nav-subtitle').innerText = translations[lang].subtitle;
+                if(document.getElementById('section-title')) document.getElementById('section-title').innerText = translations[lang].secTitle;
+                if(document.getElementById('section-desc')) document.getElementById('section-desc').innerText = translations[lang].secDesc;
+                if(document.getElementById('card-badge')) document.getElementById('card-badge').innerText = translations[lang].badge;
+                if(document.getElementById('card-title')) document.getElementById('card-title').innerText = translations[lang].cardTitle;
+                if(document.getElementById('card-p1')) document.getElementById('card-p1').innerText = translations[lang].cardP1;
+                if(document.getElementById('card-p2')) document.getElementById('card-p2').innerText = translations[lang].cardP2;
+                if(document.getElementById('card-btn')) document.getElementById('card-btn').innerText = translations[lang].btn;
+                if(document.getElementById('footer-privacy')) document.getElementById('footer-privacy').innerText = translations[lang].privacy;
+                if(document.getElementById('footer-terms')) document.getElementById('footer-terms').innerText = translations[lang].terms;
 
-            // Corrección: Cambiar  la clase activa comparando correctamente con el argumento 'lang'
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.getAttribute('onclick').includes(`'${lang}'`)) {
-                    btn.classList.add('active');
-                }
-            });
+                // Actualizar clases de botones de idioma de forma segura
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    const clickAttr = btn.getAttribute('onclick') || '';
+                    if(clickAttr.includes(`'${lang}'`)) {
+                        btn.classList.add('active');
+                    }
+                });
+            } catch (error) {
+                console.error("Error en la traducción:", error);
+            }
         }
-        setLanguage('en');
+
+        // Ejecutar de forma segura hasta que el HTML esté completamente dibujado
+        window.onload = function() {
+            setLanguage('en');
+        };
     </script>
