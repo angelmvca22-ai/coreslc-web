@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Core Sync Logistics Canada | Soluciones Corporativas</title>
+    <title>Core Sync Logistics Canada | Corporate Solutions</title>
     <style>
         :root {
             --primary: #1e293b;
@@ -24,9 +24,35 @@
             color: white; 
             padding: 60px 20px; 
             text-align: center;
+            position: relative;
         }
         header h1 { margin: 0; font-size: 2.5rem; font-weight: 700; }
         header p { margin: 10px 0 0 0; font-size: 1.2rem; color: #94a3b8; }
+        
+        /* Language Switcher Styles */
+        .lang-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
         .container { 
             max-width: 900px; 
             margin: 40px auto; 
@@ -40,6 +66,7 @@
             background: white; 
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             margin-top: 30px;
+            text-align: left;
         }
         .app-card h3 { margin-top: 0; color: var(--primary); font-size: 1.5rem; }
         .badge {
@@ -79,32 +106,84 @@
 <body>
 
     <header>
-        <h1>Core Sync Logistics Canada</h1>
-        <p>Infraestructura Tecnológica y Soporte Operativo Empresarial</p>
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" onclick="setLanguage('fr')">FR</button>
+        </div>
+        <h1 id="nav-title">Core Sync Logistics Canada</h1>
+        <p id="nav-subtitle">Technological Infrastructure & Corporate Operations Support</p>
     </header>
 
     <div class="container">
         <div class="intro">
-            <h2>Nuestras Soluciones Cloud</h2>
-            <p>En Core Sync Logistics desarrollamos, administramos y hospedamos plataformas web personalizadas destinadas a optimizar la logística, el control de personal y los flujos de trabajo de nuestros aliados comerciales.</p>
+            <h2 id="section-title">Our Cloud Solutions</h2>
+            <p id="section-desc">At Core Sync Logistics, we develop, manage, and host custom web platforms designed to optimize logistics, workforce tracking, and workflow efficiency for our business partners.</p>
         </div>
         
         <div class="app-card">
-            <span class="badge">Acceso Corporativo Protegido</span>
-            <h3>Fenix App</h3>
-            <p>Plataforma integral diseñada exclusivamente para la gestión operativa, control de asistencia en tiempo real y coordinación logística de los equipos de trabajo de la organización Fenix.</p>
-            <p>El sistema utiliza la autenticación segura de Google para validar la identidad de los empleados autorizados y permitirles el acceso a sus herramientas de trabajo cotidianas.</p>
-            <a href="https://fenix.coreslc.com" class="btn">Acceder a la Plataforma</a>
+            <span class="badge" id="card-badge">Protected Enterprise Access</span>
+            <h3 id="card-title">Fenix App</h3>
+            <p id="card-p1">An integrated platform designed exclusively for operational management, real-time attendance tracking, and logistics coordination for Fenix teams.</p>
+            <p id="card-p2">The system utilizes secure Google Authentication to validate the identity of authorized personnel and grant them access to their daily operational tools.</p>
+            <a href="https://fenix.coreslc.com" class="btn" id="card-btn">Access Platform</a>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Core Sync Logistics Canada. Todos los derechos reservados.</p>
+        <p>&copy; 2026 Core Sync Logistics Canada. All rights reserved.</p>
         <p>
-            <a href="privacy.html">Política de Privacidad</a> | 
-            <a href="terms.html">Términos de Servicio</a>
+            <a href="privacy.html" id="footer-privacy">Privacy Policy</a> | 
+            <a href="terms.html" id="footer-terms">Terms of Service</a>
         </p>
     </footer>
 
-</body>
-</html>
+    <script>
+        const translations = {
+            en: {
+                subtitle: "Technological Infrastructure & Corporate Operations Support",
+                secTitle: "Our Cloud Solutions",
+                secDesc: "At Core Sync Logistics, we develop, manage, and host custom web platforms designed to optimize logistics, workforce tracking, and workflow efficiency for our business partners.",
+                badge: "Protected Enterprise Access",
+                cardTitle: "Fenix App",
+                cardP1: "An integrated platform designed exclusively for operational management, real-time attendance tracking, and logistics coordination for Fenix teams.",
+                cardP2: "The system utilizes secure Google Authentication to validate the identity of authorized personnel and grant them access to their daily operational tools.",
+                btn: "Access Platform",
+                privacy: "Privacy Policy",
+                terms: "Terms of Service"
+            },
+            fr: {
+                subtitle: "Infrastructure Technologique et Soutien aux Opérations Entreprise",
+                secTitle: "Nos Solutions Cloud",
+                secDesc: "Chez Core Sync Logistics, nous développons, gérons et hébergeons des plateformes web personnalisées conçues pour optimiser la logistique, le suivi du personnel et l'efficacité des flux de travail de nos partenaires commerciaux.",
+                badge: "Accès Entreprise Protégé",
+                cardTitle: "Fenix App",
+                cardP1: "Une plateforme intégrée conçue exclusivement pour la gestion opérationnelle, le suivi des présences en temps réel et la coordination logistique des équipes de Fenix.",
+                cardP2: "Le système utilise l'authentification sécurisée de Google pour valider l'identité du personnel autorisé et lui accorder l'accès à ses outils de travail quotidiens.",
+                btn: "Accéder à la Plateforme",
+                privacy: "Politique de Confidentialité",
+                terms: "Conditions d'Utilisation"
+            }
+        };
+
+        function setLanguage(lang) {
+            // Actualizar contenidos de texto
+            document.getElementById('nav-subtitle').innerText = translations[lang].subtitle;
+            document.getElementById('section-title').innerText = translations[lang].secTitle;
+            document.getElementById('section-desc').innerText = translations[lang].secDesc;
+            document.getElementById('card-badge').innerText = translations[lang].badge;
+            document.getElementById('card-title').innerText = translations[lang].cardTitle;
+            document.getElementById('card-p1').innerText = translations[lang].cardP1;
+            document.getElementById('card-p2').innerText = translations[lang].cardP2;
+            document.getElementById('card-btn').innerText = translations[lang].btn;
+            document.getElementById('footer-privacy').innerText = translations[lang].privacy;
+            document.getElementById('footer-terms').innerText = translations[lang].terms;
+
+            // Corrección: Cambiar la clase activa comparando correctamente con el argumento 'lang'
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.getAttribute('onclick').includes(`'${lang}'`)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+    </script>
